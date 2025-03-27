@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const Team = () => {
   const heroText = "Our People.";
-  const heroImage = "./hero1.jpg";
+  const heroImage = "./hero1.webp";
   const [selectedMember, setSelectedMember] = useState(null);
 
   const handleCardClick = (member) => {

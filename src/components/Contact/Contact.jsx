@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 const Contact = () => {
   const heroText = 'Reach out to Us.';
-  const heroImage = './hero5.jpg';
+  const heroImage = './hero5.webp';
   const [alert, setAlert] = useState({ show: false, message: '', type: '' });
 
   // Initialize EmailJS

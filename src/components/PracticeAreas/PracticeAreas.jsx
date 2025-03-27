@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 
 const PracticeAreas = () => {
   const heroText = "Our Specialty.";
-  const heroImage = "./hero2.jpg"; // Replace with your image URL
+  const heroImage = "./hero2.webp"; // Replace with your image URL
 
   return (
     <section className="v-wrapper" id='cert'>

@@ -39,7 +39,7 @@ const Hero = () => {
         <Slider {...settings}>
           {/* Slide 1 */}
           <div className="slide">
-            <img src="./slide.jpg" alt="Courtroom" loading='lazy' />
+            <img src="./slide.webp" alt="Courtroom" loading='lazy' />
             <div className="slide-content">
               <h1 className='heroText'>Expert Legal Representation</h1>
               <p>We fight for your rights and deliver justice.</p>
@@ -57,7 +57,7 @@ const Hero = () => {
 
           {/* Slide 2 */}
           <div className="slide">
-            <img src="./slide3.jpg" alt="Lawyer Working" loading='lazy' />
+            <img src="./slide3.webp" alt="Lawyer Working" loading='lazy' />
             <div className="slide-content">
               <h1 className='heroText'>Trusted Legal Advisors</h1>
               <p>Providing personalized solutions for your legal needs.</p>
@@ -75,7 +75,7 @@ const Hero = () => {
 
           {/* Slide 3 */}
           <div className="slide">
-            <img src="./slide4.jpg" alt="Legal Document" loading='lazy'/>
+            <img src="./slide4.webp" alt="Legal Document" loading='lazy'/>
             <div className="slide-content">
               <h1 className='heroText'>Your Rights, Our Priority</h1>
               <p>Committed to protecting your interests.</p>
@@ -103,7 +103,7 @@ const Hero = () => {
       >
         <div className="publication-cards">
           <motion.img
-            src="./team.JPG"
+            src="./team.webp"
             alt="Our Team"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}

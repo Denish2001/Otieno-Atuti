@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const Publications = () => {
   const heroText = "Literary Works.";
-  const heroImage = "./hero3.jpg";
+  const heroImage = "./hero3.webp";
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   const handleCardClick = (publication) => {

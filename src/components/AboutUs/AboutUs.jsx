@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const AboutUs = () => {
   const heroText = "Get to Know Us.";
-  const heroImage = "./hero.jpg"; // Replace with your image URL
+  const heroImage = "./hero.webp"; // Replace with your image URL
 
   // Slideshow data
   const slides = [

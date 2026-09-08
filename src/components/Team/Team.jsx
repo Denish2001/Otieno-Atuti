@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Team.css';
 import HeroSection from '../HeroSection/HeroSection';
 import data from '../../utils/team.json';
-import { motion } from 'framer-motion';
+
 
 const Team = () => {
   const heroText = "Our People.";
@@ -21,16 +21,12 @@ const Team = () => {
     <section className="r-wrapper" id="projects">
       <div className="paddings innerWidth r-container">
         <div className="r-head flexCenter">
-          <HeroSection text={heroText} image={heroImage} />
+          <HeroSection text={heroText} image={heroImage} loading='eager'/>
         </div>
 
         {/* Team Members Cards Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 3, ease: [0.25, 0.1, 0.25, 1] }}
-          viewport={{ once: true }}
-          className="publications-grid">
+        
+          <section className="publications-grid">
             {data.map((member) => (
               <div
                 key={member.id}
@@ -38,7 +34,7 @@ const Team = () => {
                 onClick={() => handleCardClick(member)}
               >
                 <div className="card-image">
-                  <img src={member.image} alt={member.title} loading='lazy'/>
+                  <img src={member.image} alt={member.title} loading='eager'/>
                 </div>
                 <div className="primaryText">
                   {member.title}
@@ -48,14 +44,14 @@ const Team = () => {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </section>
 
         {/* Dedicated Space for Full Member Details */}
         {selectedMember && (
           <div className="member-overlay">
             <div className="member-display">
               <h2>{selectedMember.title}</h2>
-              <img src={selectedMember.image} alt={selectedMember.title} loading='lazy'/>
+              <img src={selectedMember.image} alt={selectedMember.title} loading='eager'/>
               <div className="member-content">
                 <h3>{selectedMember.post}</h3>
                 <p>{selectedMember.details}</p>

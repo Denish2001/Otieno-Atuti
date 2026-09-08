@@ -19,23 +19,13 @@ const Publications = () => {
 
   return (
     <section className="r-wrapper" id="projects">
-       <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 2, ease: [0.25, 0.1, 0.25, 1] }}
-        viewport={{ once: true }}
-        className="paddings innerWidth r-container">
+       <div className="paddings innerWidth r-container">
         <div className="r-head flexCenter">
-          <HeroSection text={heroText} image={heroImage} />
+          <HeroSection text={heroText} image={heroImage} loading='eager' />
         </div>
 
         {/* Publications Cards Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, ease: [0.25, 0.1, 0.25, 1] }}
-          viewport={{ once: true }}
-         className="publications-grid">
+        <div className="publications-grid">
           {data.map((publication) => (
             <div
               key={publication.id}
@@ -43,21 +33,21 @@ const Publications = () => {
               onClick={() => handleCardClick(publication)}
             >
               <div className="card-image">
-                <img src={publication.image} alt={publication.title} loading='lazy' />
+                <img src={publication.image} alt={publication.title} loading='eager' />
               </div>
               <div className="primaryText">
                 {publication.title}
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Dedicated Space for Full Article */}
         {selectedArticle && (
           <div className="article-overlay">
             <div className="article-display">
               <h2>{selectedArticle.title}</h2>
-              <img src={selectedArticle.image} alt={selectedArticle.title} loading='lazy'/>
+              <img src={selectedArticle.image} alt={selectedArticle.title} loading='eager'/>
               <div className="article-content">
                 <h3>Summary</h3>
                 <p>{selectedArticle.article.summary}</p>
@@ -136,7 +126,7 @@ const Publications = () => {
             </div>
           </div>
         )}
-      </motion.div>
+      </div>
     </section>
   );
 };

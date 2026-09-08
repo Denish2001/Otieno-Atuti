@@ -18,7 +18,7 @@ const PracticeAreas = () => {
   return (
     <section className="v-wrapper" id='cert'>
       <div className="innerWidth flexColStart paddings v-container">
-        <HeroSection text={heroText} image={heroImage} />
+        <HeroSection text={heroText} image={heroImage} loading='eager' />
         <div className="certification">
           <motion.div
                   initial={{ x: '-100%' }}

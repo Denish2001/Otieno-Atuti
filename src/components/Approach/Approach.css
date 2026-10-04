@@ -14,7 +14,7 @@
   font-weight: 300; /* lighter weight for elegance */
   letter-spacing: 1px;
   margin-bottom: 60px;
-  color: #1a1a1a;
+  color: #336B87;
 }
 
 /* Step Card – clean, minimal card */
@@ -40,7 +40,7 @@
 .step-icon {
   width: 48px;
   height: 48px;
-  background: #1a1a1a; /* dark, not primary color */
+  background: #336B87; /* dark, not primary color */
   color: #fff;
   border-radius: 50%;
   display: flex;

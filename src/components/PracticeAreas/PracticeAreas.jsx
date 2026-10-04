@@ -13,8 +13,8 @@ import { motion } from 'framer-motion';
 
 const PracticeAreas = () => {
   const heroText = "Our Specialty.";
-  const heroImage = "./hero2.webp"; // Replace with your image URL
-
+  const heroImage = "./hero2.webp"; 
+  
   return (
     <section className="v-wrapper" id='cert'>
       <div className="innerWidth flexColStart paddings v-container">

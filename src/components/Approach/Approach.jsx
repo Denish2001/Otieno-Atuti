@@ -71,7 +71,7 @@ const Approach = () => {
             <h2>{step.title}</h2>
             <p>{step.description}</p>
             <div className="how-we-do-it">
-              <h3>🔹 How we do it:</h3>
+              <h3> How we do it:</h3>
               <ul>
                 {step.howWeDoIt.map((item, idx) => (
                   <li key={idx}>{item}</li>

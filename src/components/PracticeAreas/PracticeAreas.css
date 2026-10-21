@@ -1,95 +1,181 @@
-/* PracticeAreas.css */
-.v-wrapper {
-    position: relative;
-    padding-bottom: 1rem;
+/* PracticeAreas.css
+   Brand colors come from your existing variables (--primary, --lightBlue).
+   Fallbacks are provided for the extra tones so nothing breaks if they're not defined. */
+
+.practice-wrapper {
+  /* Local tokens (all solid colors) */
+  --pa-bg-button: var(--primary);
+  --pa-bg-button-active: var(--primary-hover, #336b87);
+  --pa-bg-panel: var(--lightBlue);
+  --pa-border: var(--border-color, #ddd);
+  --pa-on-primary: #fff;
+  --pa-focus: #fff;
+  --pa-radius: 5px;
+  --pa-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --pa-duration: 0.35s;
+
+  position: relative;
+  padding-bottom: 1rem;
+  overflow-x: clip; /* prevents horizontal scroll from the slide-in animation */
+}
+
+.practice-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 150px;
+}
+
+.practice-content {
+  width: 100%;
+}
+
+.practice-accordion-container {
+  width: 100%;
+}
+
+/* ---------- Accordion ---------- */
+
+.accordion {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.accordion__item {
+  margin-bottom: 10px;
+  border: 1px solid var(--pa-border);
+  border-radius: var(--pa-radius);
+  overflow: hidden; /* keeps button + panel corners flush with the border radius */
+}
+
+.accordion__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 15px;
+  text-align: left;
+  color: var(--pa-on-primary);
+  background-color: var(--pa-bg-button);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accordion__button:hover,
+.accordion__button[aria-expanded="true"] {
+  background-color: var(--pa-bg-button-active);
+}
+
+.accordion__button:focus {
+  outline: none;
+}
+
+.accordion__button:focus-visible {
+  outline: 3px solid var(--pa-focus);
+  outline-offset: -6px;
+}
+
+.accordion__title {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Plus / minus icon (two bars, vertical bar rotates away) ---------- */
+
+.accordion__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.accordion__icon::before,
+.accordion__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  margin-top: -1px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: transform var(--pa-duration) var(--pa-ease);
+}
+
+.accordion__icon::after {
+  transform: rotate(90deg);
+}
+
+.accordion__button[aria-expanded="true"] .accordion__icon::after {
+  transform: rotate(0deg);
+}
+
+/* ---------- Panel (smooth height animation) ----------
+   The library toggles the `hidden` attribute. We keep the panel rendered and
+   animate its grid row from 0fr to 1fr, while `visibility` keeps the collapsed
+   content out of the tab order and away from screen readers. */
+
+.accordion__panel,
+.accordion__panel[hidden] {
+  display: grid;
+}
+
+.accordion__panel {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  background-color: var(--pa-bg-panel);
+  transition:
+    grid-template-rows var(--pa-duration) var(--pa-ease),
+    visibility 0s linear 0s;
+}
+
+.accordion__panel[hidden] {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows var(--pa-duration) var(--pa-ease),
+    visibility 0s linear var(--pa-duration);
+}
+
+.accordion__panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.accordion__text {
+  margin: 0;
+  padding: 15px;
+  border-top: 1px solid var(--pa-border);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .practice-container {
+    gap: 1.5rem;
   }
-  
-  .v-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding-bottom: 150px;
+}
+
+@media (max-width: 480px) {
+  .accordion__button,
+  .accordion__text {
+    padding: 12px;
   }
-  
-  .certification {
-    width: 100%;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion__button,
+  .accordion__icon::before,
+  .accordion__icon::after,
+  .accordion__panel,
+  .accordion__panel[hidden] {
+    transition: none;
   }
-  
-  .accordion-container {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .accordion {
-    width: 100%;
-    max-width: none;
-    margin: 0 auto;
-  }
-  
-  .accordion__item {
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .accordion__button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary);
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .accordion__button:hover {
-    background-color: #336B87;
-  }
-  
-  .accordion__button[aria-expanded="true"] {
-    background-color: #336B87;
-    color: white;
-  }
-  
-  .accordion-icon::before {
-    content: '+'; /* Default icon (plus) */
-    font-size: 1.2em;
-    margin-left: 10px;
-  }
-  
-  .accordion__button[aria-expanded="true"] .accordion-icon::before {
-    content: '−'; /* Minus icon when expanded */
-  }
-  
-  .accordion__panel {
-    padding: 15px;
-    background-color: var(--lightBlue);
-    border-top: 1px solid #ddd;
-    animation: fadein 0.3s ease-in;
-  }
-  
-  @keyframes fadein {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 1024px) {
-    .v-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
+}

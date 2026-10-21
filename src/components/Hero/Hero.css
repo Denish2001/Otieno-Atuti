@@ -60,7 +60,6 @@
   text-decoration: none;
   font-size: 1.2rem;
   transition: background-color 0.3s ease;
- 
 }
 
 .button:hover {
@@ -68,7 +67,7 @@
 }
 
 .slide::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -130,14 +129,11 @@
   border-radius: 8px;
 }
 
-
-
-
 @media (max-width: 768px) {
   .slide-content h1 {
     font-size: 2rem;
   }
-  .slide-content .button{
+  .slide-content .button {
     width: 120%;
   }
   .slide-content p {

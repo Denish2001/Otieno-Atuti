@@ -1,43 +1,43 @@
-import React, { useState, useCallback } from 'react';
-import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import Approach from '../Approach/Approach';
-import './Hero.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useState, useCallback } from "react";
+import Slider from "react-slick";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import Approach from "../Approach/Approach";
+import "./Hero.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // Slide data – easily extensible
 const SLIDES = [
   {
     id: 1,
-    image: './slide.webp',
-    alt: 'Courtroom',
-    title: 'Expert Legal Representation',
-    description: 'We fight for your rights and deliver justice.',
-    ctaText: 'Schedule a Consultation',
-    ctaLink: '/Contact',
-    fetchpriority: 'high', // first slide gets priority
+    image: "./slide.webp",
+    alt: "Courtroom",
+    title: "Expert Legal Representation",
+    description: "We fight for your rights and deliver justice.",
+    ctaText: "Schedule a Consultation",
+    ctaLink: "/Contact",
+    fetchpriority: "high", // first slide gets priority
   },
   {
     id: 2,
-    image: './slide3.webp',
-    alt: 'Lawyer Working',
-    title: 'Trusted Legal Advisors',
-    description: 'Providing personalized solutions for your legal needs.',
-    ctaText: 'Our Services',
-    ctaLink: './PracticeAreas',
-    fetchpriority: 'auto',
+    image: "./slide3.webp",
+    alt: "Lawyer Working",
+    title: "Trusted Legal Advisors",
+    description: "Providing personalized solutions for your legal needs.",
+    ctaText: "Our Services",
+    ctaLink: "./PracticeAreas",
+    fetchpriority: "auto",
   },
   {
     id: 3,
-    image: './slide4.webp',
-    alt: 'Legal Document',
-    title: 'Your Rights, Our Priority',
-    description: 'Committed to protecting your interests.',
-    ctaText: 'Learn More About Us',
-    ctaLink: './AboutUs',
-    fetchpriority: 'auto',
+    image: "./slide4.webp",
+    alt: "Legal Document",
+    title: "Your Rights, Our Priority",
+    description: "Committed to protecting your interests.",
+    ctaText: "Learn More About Us",
+    ctaLink: "./AboutUs",
+    fetchpriority: "auto",
   },
 ];
 
@@ -62,7 +62,7 @@ const Hero = () => {
     afterChange: handleSlideChange,
     customPaging: (i) => (
       <div
-        className={`custom-dot ${i === currentSlide ? 'active' : ''}`}
+        className={`custom-dot ${i === currentSlide ? "active" : ""}`}
         aria-label={`Go to slide ${i + 1}`}
       />
     ),
@@ -77,7 +77,7 @@ const Hero = () => {
               <img
                 src={slide.image}
                 alt={slide.alt}
-                loading="eager"               // load immediately
+                loading="eager" // load immediately
                 fetchpriority={slide.fetchpriority}
               />
               <div className="slide-content">
@@ -102,7 +102,7 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
         className="story flexCenter publication-grid"
       >
@@ -110,7 +110,7 @@ const Hero = () => {
           <motion.img
             src="./team.webp"
             alt="Our Team"
-            loading="eager"   // also above the fold, load eagerly
+            loading="eager" // also above the fold, load eagerly
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -124,15 +124,14 @@ const Hero = () => {
           >
             <p className="primaryText">Our Story</p>
             <p className="secondaryText">
-              At Otieno Atuti & Company Advocates, we believe{' '}
-              all men are equal before the law, but justice
-              depends on strong representation. We're here to
-              ensure every voice is heard. Our firm brings together experienced
-              legal minds and dynamic innovators to provide sharp, strategic
-              solutions. From safeguarding businesses to defending rights and
-              resolving disputes, we approach every case with precision and
-              purpose. With us, justice isn’t just a principle—it’s a
-              commitment.
+              At Otieno Atuti & Company Advocates, we believe all men are equal
+              before the law, but justice depends on strong representation.
+              We're here to ensure every voice is heard. Our firm brings
+              together experienced legal minds and dynamic innovators to provide
+              sharp, strategic solutions. From safeguarding businesses to
+              defending rights and resolving disputes, we approach every case
+              with precision and purpose. With us, justice isn’t just a
+              principle—it’s a commitment.
             </p>
           </motion.div>
         </div>

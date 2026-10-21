@@ -1,5 +1,5 @@
-import React from 'react';
-import './PracticeAreas.css';
+import React from "react";
+import "./PracticeAreas.css";
 import {
   Accordion,
   AccordionItem,
@@ -7,41 +7,52 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from "react-accessible-accordion";
+import { motion, useReducedMotion } from "framer-motion";
 import AccData from "../../utils/Practise.json";
-import HeroSection from '../HeroSection/HeroSection';
-import { motion } from 'framer-motion';
+import HeroSection from "../HeroSection/HeroSection";
+
+const HERO_TEXT = "Our Specialty.";
+const HERO_IMAGE = "./hero2.webp";
 
 const PracticeAreas = () => {
-  const heroText = "Our Specialty.";
-  const heroImage = "./hero2.webp"; 
-  
-  return (
-    <section className="v-wrapper" id='cert'>
-      <div className="innerWidth flexColStart paddings v-container">
-        <HeroSection text={heroText} image={heroImage} loading='eager' />
-        <div className="certification">
-          <motion.div
-                  initial={{ x: '-100%' }}
-                  animate={{ x: 0 }}
-                  transition={{ type: "easeIn", duration: 1 }} 
-                  className="flexCenter accordion-container">
+  const reduceMotion = useReducedMotion();
 
-            <Accordion allowZeroExpanded>
-              {AccData.map((item, index) => (
-                <AccordionItem key={index} className="accordion__item">
-                  <AccordionItemHeading>
-                    <AccordionItemButton className="accordion__button secondarytext" hideExpanded>
-                      {item.name}
-                      <span className="accordion-icon" aria-hidden="true"></span>
+  return (
+    <section className="practice-wrapper" id="cert">
+      <div className="innerWidth flexColStart paddings practice-container">
+        <HeroSection text={HERO_TEXT} image={HERO_IMAGE} loading="eager" />
+
+        <div className="practice-content">
+          <motion.div
+            className="practice-accordion-container"
+            initial={reduceMotion ? false : { opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <Accordion className="accordion" allowZeroExpanded>
+              {AccData.map((item) => (
+                <AccordionItem
+                  key={item.id ?? item.name}
+                  className="accordion__item"
+                >
+                  <AccordionItemHeading aria-level={2}>
+                    <AccordionItemButton className="accordion__button">
+                      <span className="accordion__title">{item.name}</span>
+                      <span className="accordion__icon" aria-hidden="true" />
                     </AccordionItemButton>
                   </AccordionItemHeading>
-                  <AccordionItemPanel className="accordion__panel secondaryText">
-                    <p>{item.description}</p>
+
+                  <AccordionItemPanel className="accordion__panel">
+                    <div className="accordion__panel-inner">
+                      <p className="secondaryText accordion__text">
+                        {item.description}
+                      </p>
+                    </div>
                   </AccordionItemPanel>
                 </AccordionItem>
               ))}
             </Accordion>
-
           </motion.div>
         </div>
       </div>

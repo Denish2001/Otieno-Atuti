@@ -1,133 +1,395 @@
-/* Original CSS */
-.r-container {
-    overflow: hidden;
-    position: relative;
-    justify-content: space-around;
+/* Team.css
+   Everything is namespaced under .team-* so nothing leaks into other components.
+   Brand colors come from your variables (--primary, --lightBlue, --accent / crimson).
+   Solid colors only, and no font-family is set, so your typography is inherited. */
+
+.team-wrapper {
+  --team-primary: var(--primary);
+  --team-accent: var(--accent, crimson);
+  --team-tint: var(--lightBlue);
+  --team-surface: #fff;
+  --team-border: #d6d6d6;
+  --team-muted: #5f5f5f;
+  --team-radius: 4px;
+  --team-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+}
+
+.team-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-x: clip;
+}
+
+.team-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---------- Grid ---------- */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Card (a real button, so it works with keyboard + screen readers) ---------- */
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background-color: var(--team-surface);
+  border: 1px solid var(--team-border);
+  border-radius: var(--team-radius);
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.35s var(--team-ease),
+    box-shadow 0.35s var(--team-ease),
+    border-color 0.25s ease;
+}
+
+/* Square media — 1:1 */
+.team-card__media {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--team-tint);
+}
+
+.team-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pos, 50% 20%);
+  transition: transform 0.7s var(--team-ease);
+}
+
+.team-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.1rem 1.25rem 1.4rem;
+}
+
+/* Small accent bar that lengthens on hover / focus */
+.team-card__body::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  margin-bottom: 0.85rem;
+  background-color: var(--team-accent);
+  transition: width 0.35s var(--team-ease);
+}
+
+.team-card__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--team-primary);
+}
+
+.team-card__role {
+  margin-top: 0.3rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--team-muted);
+}
+
+.team-card:focus-visible {
+  outline: 3px solid var(--team-primary);
+  outline-offset: 3px;
+}
+
+.team-card:focus-visible .team-card__body::before {
+  width: 56px;
+}
+
+@media (hover: hover) {
+  .team-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--team-primary);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
   }
-  
-  .r-head {
-    margin-bottom: 2rem;
+
+  .team-card:hover .team-card__media img {
+    transform: scale(1.04);
   }
-  
-  ul li a:hover {
-    color: var(--blue);
-    font-size: 1rem;
+
+  .team-card:hover .team-card__body::before {
+    width: 56px;
   }
-  
-  @media (width: 640px) {
-    .r-head {
-      align-items: center;
-    }
+}
+
+/* ---------- Profile dialog (native <dialog>) ---------- */
+
+.team-dialog {
+  width: min(960px, calc(100% - 1.5rem));
+  max-width: none;
+  /* Cap so the box can never exceed the viewport — keeps it centered */
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  color: inherit;
+  background-color: var(--team-surface);
+  border: none;
+  border-radius: var(--team-radius);
+  overflow: hidden;
+  /* Explicit centering */
+  margin: auto;
+  inset: 0;
+}
+
+.team-dialog[open] {
+  animation: team-dialog-in 0.4s var(--team-ease);
+}
+
+.team-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: team-fade-in 0.3s ease;
+}
+
+@keyframes team-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
   }
-  
-  /* Added CSS for New Functionality */
-  .publications-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .publication-card {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes team-fade-in {
+  from {
+    opacity: 0;
   }
-  
-  .publication-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  to {
+    opacity: 1;
   }
-  
-  .card-image img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+}
+
+/* Panel: two columns, fixed height. Image column stretches full height. */
+.team-dialog__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-rows: minmax(0, 1fr);
+  height: min(600px, calc(100dvh - 2rem));
+}
+
+/* Image column — tall, fills panel top-to-bottom */
+.team-dialog__media {
+  min-height: 0;
+  margin: 0;
+  background-color: var(--team-tint);
+  overflow: hidden;
+}
+
+.team-dialog__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pos, 80% 15%);
+}
+
+.team-dialog__content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.team-dialog__scroll {
+  flex: 1;
+  min-height: 0;
+  padding: 2.5rem 2.5rem 1.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.team-dialog__scroll:focus-visible {
+  outline: 3px solid var(--team-primary);
+  outline-offset: -3px;
+}
+
+.team-dialog__name {
+  margin: 0 3rem 0.4rem 0; /* leaves room for the close button */
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.15;
+  color: var(--team-primary);
+}
+
+.team-dialog__post {
+  margin: 0 0 1.5rem;
+  padding-bottom: 1.25rem;
+  font-size: 1.1rem;
+  color: var(--team-muted);
+  border-bottom: 1px solid var(--team-border);
+}
+
+.team-dialog__details {
+  max-width: 65ch;
+  margin: 0;
+  line-height: 1.7;
+  white-space: pre-line; /* keeps the line breaks from your JSON */
+}
+
+/* Close button */
+.team-dialog__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: #fff;
+  background-color: var(--team-primary);
+  border: none;
+  border-radius: var(--team-radius);
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.team-dialog__close:hover {
+  background-color: var(--team-accent);
+}
+
+.team-dialog__close:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -6px;
+}
+
+/* Previous / next */
+.team-dialog__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--team-surface);
+  border-top: 1px solid var(--team-border);
+}
+
+.team-dialog__count {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--team-muted);
+}
+
+.team-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--team-primary);
+  background: none;
+  border: none;
+  border-radius: var(--team-radius);
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.team-nav-btn:hover {
+  color: var(--team-accent);
+}
+
+.team-nav-btn:focus-visible {
+  outline: 3px solid var(--team-primary);
+  outline-offset: 2px;
+}
+
+.team-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 720px) {
+  .team-grid {
+    gap: 1rem;
   }
-  
-  .primaryText {
-    padding: 1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .secondaryText {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    color: #666;
-    text-align: center;
-  }
-  
-  .member-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+
+  .team-dialog__panel {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    flex-direction: column;
+    height: min(88dvh, 720px);
+    max-height: calc(100dvh - 2rem);
   }
-  
-  .member-display {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 4px;
-    max-width: 800px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-  }
-  
-  .member-display h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .member-display img {
+
+  /* On mobile the image sits on top — square-ish hero that fills width */
+  .team-dialog__media {
+    flex: 0 0 auto;
     width: 100%;
-    height: 300px;
-    object-fit: cover;
-    object-position: 80% 15%;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+    aspect-ratio: 1 / 1;
+    max-height: 45dvh;
   }
-  
-  .member-content {
-    margin-top: 1rem;
+
+  .team-dialog__content {
+    flex: 1;
+    min-height: 0;
   }
-  
-  .member-content h3 {
-    font-size: 1.5rem;
-    margin-top: 1rem;
+
+  .team-dialog__scroll {
+    padding: 1.5rem 1.25rem 1rem;
   }
-  
-  .member-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    white-space: pre-line; /* Preserves line breaks in the JSON details */
+
+  .team-dialog__name {
+    margin-right: 0;
   }
-  
-  .member-display button {
-    position: sticky;
-    bottom: 0;
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 1rem;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .team-card,
+  .team-card__media img,
+  .team-card__body::before,
+  .team-dialog__close,
+  .team-nav-btn {
+    transition: none;
   }
-  
-  .member-display button:hover {
-    background-color: crimson;
+
+  .team-dialog[open],
+  .team-dialog::backdrop {
+    animation: none;
   }
+
+  .team-card:hover {
+    transform: none;
+  }
+
+  .team-card:hover .team-card__media img {
+    transform: none;
+  }
+}

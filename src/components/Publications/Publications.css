@@ -1,86 +1,117 @@
-/* Article Display Styles */
-.article-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* ==========================================================
+   Publications grid + card
+   ========================================================== */
+
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* locked 3 columns */
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+/* Card as <button>: reset native look, restore layout */
+.publication-card {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  line-height: 1.4;
+  font-size: 1rem;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.publication-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.publication-card:focus-visible {
+  outline: 3px solid var(--primary, #d11a2a);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Image wrapper holds aspect ratio so the button never jumps */
+.publication-card .card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.publication-card .card-image img {
+  display: block;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.article-display {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  max-width: 1000px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-}
-
-.article-display h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.article-display img {
-  width: 100%;
-  height: 300px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
 }
 
-.article-content {
-  margin-top: 1rem;
+.publication-card:hover .card-image img {
+  transform: scale(1.04);
 }
 
-.article-content h3 {
-  font-size: 1.5rem;
-  margin-top: 1rem;
+/* Title: responsive, comfortable line-height, clamped to 2 lines */
+.publication-card .card-title {
+  margin: 0;
+  font-size: clamp(1rem, 1.1vw + 0.75rem, 1.25rem);
+  line-height: 1.35;
+  font-weight: 600;
+  color: #1a1a1a;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.article-content p,
-.article-content ul,
-.article-content ol {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+/* ==========================================================
+   Responsive: 2 columns on tablet, 1 on phone
+   ========================================================== */
+
+@media (max-width: 900px) {
+  .publications-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 }
 
-.article-content ul,
-.article-content ol {
-  padding-left: 1.5rem;
+@media (max-width: 600px) {
+  .publications-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .publication-card .card-title {
+    font-size: 1.05rem;
+  }
 }
 
-.article-content li {
-  margin-bottom: 0.5rem;
-}
+/* ==========================================================
+   Reduced motion
+   ========================================================== */
 
-.disclaimer {
-  font-style: italic;
-  color: #666;
-  margin-top: 1rem;
-}
-
-.article-display button {
-  position: sticky;
-  bottom: 0;
-  background-color: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-top: 1rem;
-}
-
-.article-display button:hover {
-  background-color: crimson;
+@media (prefers-reduced-motion: reduce) {
+  .publication-card,
+  .publication-card .card-image img {
+    transition: none;
+  }
+  .publication-card:hover {
+    transform: none;
+  }
+  .publication-card:hover .card-image img {
+    transform: none;
+  }
 }

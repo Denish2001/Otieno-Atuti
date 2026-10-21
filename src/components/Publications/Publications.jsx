@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import './Publications.css';
-import HeroSection from '../HeroSection/HeroSection';
-import data from '../../utils/Publications.json';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import "./Publications.css";
+import HeroSection from "../HeroSection/HeroSection";
+import data from "../../utils/Publications.json";
+import { motion } from "framer-motion";
 
 const Publications = () => {
   const heroText = "Literary Works.";
@@ -19,9 +19,9 @@ const Publications = () => {
 
   return (
     <section className="r-wrapper" id="projects">
-       <div className="paddings innerWidth r-container">
+      <div className="paddings innerWidth r-container">
         <div className="r-head flexCenter">
-          <HeroSection text={heroText} image={heroImage} loading='eager' />
+          <HeroSection text={heroText} image={heroImage} loading="eager" />
         </div>
 
         {/* Publications Cards Section */}
@@ -33,11 +33,13 @@ const Publications = () => {
               onClick={() => handleCardClick(publication)}
             >
               <div className="card-image">
-                <img src={publication.image} alt={publication.title} loading='eager' />
+                <img
+                  src={publication.image}
+                  alt={publication.title}
+                  loading="eager"
+                />
               </div>
-              <div className="primaryText">
-                {publication.title}
-              </div>
+              <div className="primaryText">{publication.title}</div>
             </div>
           ))}
         </div>
@@ -47,7 +49,11 @@ const Publications = () => {
           <div className="article-overlay">
             <div className="article-display">
               <h2>{selectedArticle.title}</h2>
-              <img src={selectedArticle.image} alt={selectedArticle.title} loading='eager'/>
+              <img
+                src={selectedArticle.image}
+                alt={selectedArticle.title}
+                loading="eager"
+              />
               <div className="article-content">
                 <h3>Summary</h3>
                 <p>{selectedArticle.article.summary}</p>
@@ -56,9 +62,11 @@ const Publications = () => {
                   <>
                     <h3>Requirements</h3>
                     <ul>
-                      {selectedArticle.article.requirements.map((requirement, index) => (
-                        <li key={index}>{requirement}</li>
-                      ))}
+                      {selectedArticle.article.requirements.map(
+                        (requirement, index) => (
+                          <li key={index}>{requirement}</li>
+                        ),
+                      )}
                     </ul>
                   </>
                 )}
@@ -66,11 +74,15 @@ const Publications = () => {
                 {selectedArticle.article.foreign_requirements && (
                   <>
                     <h3>Foreign Requirements</h3>
-                    <p>{selectedArticle.article.foreign_requirements.description}</p>
+                    <p>
+                      {selectedArticle.article.foreign_requirements.description}
+                    </p>
                     <ul>
-                      {selectedArticle.article.foreign_requirements.additional_documents.map((doc, index) => (
-                        <li key={index}>{doc}</li>
-                      ))}
+                      {selectedArticle.article.foreign_requirements.additional_documents.map(
+                        (doc, index) => (
+                          <li key={index}>{doc}</li>
+                        ),
+                      )}
                     </ul>
                   </>
                 )}
@@ -78,12 +90,14 @@ const Publications = () => {
                 {selectedArticle.article.court_findings && (
                   <>
                     <h3>Court Findings</h3>
-                    {selectedArticle.article.court_findings.map((finding, index) => (
-                      <div key={index}>
-                        <h4>{finding.court}</h4>
-                        <p>{finding.ruling}</p>
-                      </div>
-                    ))}
+                    {selectedArticle.article.court_findings.map(
+                      (finding, index) => (
+                        <div key={index}>
+                          <h4>{finding.court}</h4>
+                          <p>{finding.ruling}</p>
+                        </div>
+                      ),
+                    )}
                   </>
                 )}
 
@@ -91,9 +105,11 @@ const Publications = () => {
                   <>
                     <h3>Key Takeaways</h3>
                     <ul>
-                      {selectedArticle.article.key_takeaways.map((takeaway, index) => (
-                        <li key={index}>{takeaway}</li>
-                      ))}
+                      {selectedArticle.article.key_takeaways.map(
+                        (takeaway, index) => (
+                          <li key={index}>{takeaway}</li>
+                        ),
+                      )}
                     </ul>
                   </>
                 )}
@@ -113,9 +129,11 @@ const Publications = () => {
                   <>
                     <h3>Key Requirements</h3>
                     <ul>
-                      {selectedArticle.article.key_requirements.map((requirement, index) => (
-                        <li key={index}>{requirement}</li>
-                      ))}
+                      {selectedArticle.article.key_requirements.map(
+                        (requirement, index) => (
+                          <li key={index}>{requirement}</li>
+                        ),
+                      )}
                     </ul>
                   </>
                 )}

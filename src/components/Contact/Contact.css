@@ -1,312 +1,383 @@
-/* Container for Form and Subscription Card */
-.c-container {
-  display: flex;
-  justify-content: space-around; /* Space out the form and right column */
-  gap: 2rem;
-  margin-bottom: 1rem;
-  align-items: flex-start; /* Align items to the top */
+/* =========================================================
+   Contact page — tokens scoped to .c-wrapper
+   Brand identity preserved via existing --primary, --lightBlue,
+   --blue-gradient, --shadow. Fallbacks ensure nothing breaks.
+   ========================================================= */
+.c-wrapper {
+  --c-surface: #ffffff;
+  --c-card-bg: var(--lightBlue, #eef4f8);
+  --c-text: #1f2933;
+  --c-muted: #5b6770;
+  --c-border: rgba(15, 40, 60, 0.12);
+  --c-radius: 12px;
+  --c-radius-sm: 8px;
+  --c-shadow: var(--shadow, 0 6px 20px rgba(15, 40, 60, 0.08));
+  --c-shadow-hover: 0 10px 28px rgba(15, 40, 60, 0.14);
+  --c-gap: clamp(1rem, 2.5vw, 2rem);
+  --c-ease: 250ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  color: var(--c-text);
+  background: #fff;
+  position: relative;
+  padding-bottom: 1rem;
+  overflow-x: clip;
 }
 
-/* Form Container */
-.form-container {
-  width: 55%; /* Form takes 60% of the width */
-  padding: 1.5rem;
-  background: var(--lightBlue);
-  border-radius: 4px;
-  box-shadow: var(--shadow);
-}
-
-.form-container h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-/* Right Column for Subscription and Location Cards */
-.right-column {
-  width: 30%; /* Right column takes 35% of the width */
+.c-inner {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* Space between subscription and location cards */
+  gap: var(--c-gap);
 }
 
-/* Subscription Card */
+.c-head {
+  width: 100%;
+}
+
+/* ---------- Cards (shared) ---------- */
+.card {
+  background: var(--c-card-bg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--c-radius);
+  box-shadow: var(--c-shadow);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.primaryText {
+  color: var(--c-text);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  margin: 0 0 0.5rem;
+}
+
+.secondaryText {
+  color: var(--c-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------- Two-column layout ---------- */
+.c-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: var(--c-gap);
+  align-items: start;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--c-gap);
+}
+
+/* ---------- Form ---------- */
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-intro {
+  margin-bottom: 0.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+.field input,
+.field textarea,
+.subscription-card input {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  color: var(--c-text);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--c-radius-sm);
+  transition:
+    border-color var(--c-ease),
+    box-shadow var(--c-ease);
+}
+
+.field input::placeholder,
+.field textarea::placeholder,
+.subscription-card input::placeholder {
+  color: #97a3ad;
+}
+
+.field input:focus,
+.field textarea:focus,
+.subscription-card input:focus {
+  outline: none;
+  border-color: var(--primary, #2b6cb0);
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.18);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.25rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary, #2b6cb0);
+  border: none;
+  border-radius: var(--c-radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background var(--c-ease),
+    transform var(--c-ease),
+    box-shadow var(--c-ease);
+}
+
+.btn:hover {
+  background: var(--primary-hover, #1e4e8a);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--primary, #2b6cb0);
+  outline-offset: 2px;
+}
+
+.btn--ghost {
+  width: 100%;
+  color: var(--primary, #2b6cb0);
+  background: var(--c-surface);
+  border: 1px solid var(--primary, #2b6cb0);
+}
+
+.btn--ghost:hover {
+  color: #fff;
+  background: var(--primary, #2b6cb0);
+}
+
+/* ---------- Subscription ---------- */
 .subscription-card {
-  width: 100%; /* Full width of the right column */
-  padding: 1.5rem;
-  background: var(--lightBlue);
-  border-radius: 4px;
-  box-shadow: var(--shadow);
   text-align: center;
 }
 
-.subscription-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
 .subscription-card p {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 1.5rem;
+  margin: 0.25rem 0 1rem;
 }
 
 .subscription-card form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
-.subscription-card input[type="email"] {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-
-
-.subscription-card button:hover {
-  background: var(--blue-gradient);
-}
-
-/* Address Card */
+/* ---------- Address ---------- */
 .address-card {
-  width: 100%; /* Full width of the right column */
-  padding: 1.5rem;
-  background: var(--lightBlue);
-  border-radius: 4px;
-  box-shadow: var(--shadow);
   text-align: center;
-}
-
-.address-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
 }
 
 .address-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .pin-icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 1rem;
+  width: 36px;
+  height: 36px;
 }
 
-.address-card p {
+address.secondaryText {
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.map-link {
+  font-weight: 600;
   font-size: 0.9rem;
-  color: #666;
-  line-height: 1.5;
+  color: var(--primary, #2b6cb0);
+  text-decoration: none;
 }
 
-/* Contact Modes */
+.map-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Contact modes ---------- */
 .contact-modes-container {
   width: 100%;
-  margin-top: 2rem;
 }
 
-.c-left {
-  width: 100%;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.contactModes {
-  margin-top: 1rem;
-  gap: 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.contactModes .row {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center; /* Center the modes horizontally */
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--c-gap);
 }
 
 .mode {
-  width: 17rem;
-  min-height: 230px;
-  padding: 1.5rem;
-  border: 1px solid rgba(128, 128, 128, 0.1);
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 300ms ease-in;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--c-radius);
+  box-shadow: var(--c-shadow);
+  transition:
+    transform var(--c-ease),
+    box-shadow var(--c-ease);
 }
 
 .mode:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  box-shadow: var(--c-shadow-hover);
 }
 
 .mode .icon {
-  background: var(--lightBlue);
-  padding: 1rem;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.mode .icon svg {
-  color: var(--blue);
-  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  color: var(--primary, #2b6cb0);
+  background: var(--c-card-bg);
+  border-radius: 50%;
 }
 
 .mode .details {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .mode .details .primaryText {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--blue);
+  font-size: 1.05rem;
+  margin: 0;
 }
 
 .mode .details .secondaryText {
   font-size: 0.9rem;
-  color: #666;
 }
 
-.mode .button {
+/* ---------- Map ---------- */
+.physical-location-container {
   width: 100%;
-  background: var(--lightBlue);
-  color: var(--blue);
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: all 300ms ease-in;
-  margin-top: 1rem;
+  text-align: center;
 }
 
-.mode .button:hover {
-  background: var(--blue-gradient);
-  color: white;
-  transform: scale(0.98);
-}
-
-/* Form Input Fields */
-input[type="text"],
-input[type="email"],
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-  margin-bottom: 1rem;
-}
-
-/* Labels */
-label {
-  padding: 12px 0;
+.location-iframe {
   display: block;
-  font-weight: 300;
+  width: 100%;
+  height: clamp(260px, 40vw, 420px);
+  margin: 1rem auto 0;
+  border: 0;
+  border-radius: var(--c-radius);
+  box-shadow: var(--c-shadow);
 }
 
-
-
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .c-container {
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-  }
-
-  .form-container,
-  .right-column {
-    width: 100%; /* Full width on smaller screens */
-  }
-  .form-container .button{
-    width: 100%;
-  }
-  .mode{
-    width: 100%;
-    
-  }
-  .mode .details{
-    transform: scale(1.2);
-
-  }
-}
-/* Alert Notification Styles */
+/* ---------- Alert ---------- */
 .alert-notification {
   position: fixed;
-  top: 40px;
+  top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 15px 25px;
-  border-radius: 4px;
-  font-weight: 500;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  max-width: 90%;
+  gap: 1rem;
   width: max-content;
+  max-width: calc(100% - 2rem);
+  padding: 0.85rem 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  border-radius: var(--c-radius-sm);
+  box-shadow: var(--c-shadow-hover);
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  animation: slideIn 0.3s ease-out;
 }
 
 .alert-notification.success {
-  background-color: #4caf50;
-  color: white;
+  background: #2f855a;
 }
-
 .alert-notification.error {
-  background-color: #f44336;
-  color: white;
+  background: #c53030;
 }
 
 .alert-close {
   background: transparent;
   border: none;
   color: inherit;
-  font-size: 20px;
+  font-size: 1.25rem;
+  line-height: 1;
   cursor: pointer;
-  margin-left: 15px;
-  padding: 0 5px;
-  opacity: 0.8;
-  transition: opacity 0.2s;
+  opacity: 0.85;
 }
 
 .alert-close:hover {
   opacity: 1;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+/* ---------- Utilities ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .c-container {
+    grid-template-columns: 1fr;
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .alert-notification {
-    width: 90%;
-    padding: 12px 20px;
-    font-size: 14px;
+@media (max-width: 480px) {
+  .c-wrapper {
+    padding: 1.5rem 0.75rem 3rem;
+  }
+  .modes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

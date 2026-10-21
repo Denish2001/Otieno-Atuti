@@ -17,7 +17,7 @@ const SLIDES = [
     description: "We fight for your rights and deliver justice.",
     ctaText: "Schedule a Consultation",
     ctaLink: "/Contact",
-    fetchpriority: "high", // first slide gets priority
+    fetchPriority: "high", // first slide gets priority
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const SLIDES = [
     description: "Providing personalized solutions for your legal needs.",
     ctaText: "Our Services",
     ctaLink: "./PracticeAreas",
-    fetchpriority: "auto",
+    fetchPriority: "auto",
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const SLIDES = [
     description: "Committed to protecting your interests.",
     ctaText: "Learn More About Us",
     ctaLink: "./AboutUs",
-    fetchpriority: "auto",
+    fetchPriority: "auto",
   },
 ];
 
@@ -78,7 +78,7 @@ const Hero = () => {
                 src={slide.image}
                 alt={slide.alt}
                 loading="eager" // load immediately
-                fetchpriority={slide.fetchpriority}
+                fetchPriority={slide.fetchPriority}
               />
               <div className="slide-content">
                 <h1 className="heroText">{slide.title}</h1>
@@ -121,17 +121,18 @@ const Hero = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
+            className="publication-text"
           >
             <p className="primaryText">Our Story</p>
             <p className="secondaryText">
-              At Otieno Atuti & Company Advocates, we believe all men are equal
-              before the law, but justice depends on strong representation.
-              We're here to ensure every voice is heard. Our firm brings
-              together experienced legal minds and dynamic innovators to provide
-              sharp, strategic solutions. From safeguarding businesses to
-              defending rights and resolving disputes, we approach every case
-              with precision and purpose. With us, justice isn’t just a
-              principle—it’s a commitment.
+              At Otieno Atuti &amp; Company Advocates, we believe all men are
+              equal before the law, but justice depends on strong
+              representation. We're here to ensure every voice is heard. Our
+              firm brings together experienced legal minds and dynamic
+              innovators to provide sharp, strategic solutions. From
+              safeguarding businesses to defending rights and resolving
+              disputes, we approach every case with precision and purpose. With
+              us, justice isn’t just a principle—it’s a commitment.
             </p>
           </motion.div>
         </div>

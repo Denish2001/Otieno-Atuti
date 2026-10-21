@@ -1,18 +1,18 @@
-import React from "react";
-import "./PracticeAreas.css";
+import React from 'react';
+import './PracticeAreas.css';
 import {
   Accordion,
   AccordionItem,
   AccordionItemHeading,
   AccordionItemButton,
   AccordionItemPanel,
-} from "react-accessible-accordion";
-import { motion, useReducedMotion } from "framer-motion";
-import AccData from "../../utils/Practise.json";
-import HeroSection from "../HeroSection/HeroSection";
+} from 'react-accessible-accordion';
+import { motion, useReducedMotion } from 'framer-motion';
+import AccData from '../../utils/Practise.json';
+import HeroSection from '../HeroSection/HeroSection';
 
-const HERO_TEXT = "Our Specialty.";
-const HERO_IMAGE = "./hero2.webp";
+const HERO_TEXT = 'Our Specialty.';
+const HERO_IMAGE = './hero2.webp';
 
 const PracticeAreas = () => {
   const reduceMotion = useReducedMotion();
@@ -28,7 +28,7 @@ const PracticeAreas = () => {
             initial={reduceMotion ? false : { opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             <Accordion className="accordion" allowZeroExpanded>
               {AccData.map((item) => (

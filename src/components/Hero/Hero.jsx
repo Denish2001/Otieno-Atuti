@@ -1,43 +1,43 @@
-import React, { useState, useCallback } from "react";
-import Slider from "react-slick";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import Approach from "../Approach/Approach";
-import "./Hero.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useState, useCallback } from 'react';
+import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Approach from '../Approach/Approach';
+import './Hero.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 // Slide data – easily extensible
 const SLIDES = [
   {
     id: 1,
-    image: "./slide.webp",
-    alt: "Courtroom",
-    title: "Expert Legal Representation",
-    description: "We fight for your rights and deliver justice.",
-    ctaText: "Schedule a Consultation",
-    ctaLink: "/Contact",
-    fetchPriority: "high", // first slide gets priority
+    image: './slide.webp',
+    alt: 'Courtroom',
+    title: 'Expert Legal Representation',
+    description: 'We fight for your rights and deliver justice.',
+    ctaText: 'Schedule a Consultation',
+    ctaLink: '/Contact',
+    fetchPriority: 'high', // first slide gets priority
   },
   {
     id: 2,
-    image: "./slide3.webp",
-    alt: "Lawyer Working",
-    title: "Trusted Legal Advisors",
-    description: "Providing personalized solutions for your legal needs.",
-    ctaText: "Our Services",
-    ctaLink: "./PracticeAreas",
-    fetchPriority: "auto",
+    image: './slide3.webp',
+    alt: 'Lawyer Working',
+    title: 'Trusted Legal Advisors',
+    description: 'Providing personalized solutions for your legal needs.',
+    ctaText: 'Our Services',
+    ctaLink: './PracticeAreas',
+    fetchPriority: 'auto',
   },
   {
     id: 3,
-    image: "./slide4.webp",
-    alt: "Legal Document",
-    title: "Your Rights, Our Priority",
-    description: "Committed to protecting your interests.",
-    ctaText: "Learn More About Us",
-    ctaLink: "./AboutUs",
-    fetchPriority: "auto",
+    image: './slide4.webp',
+    alt: 'Legal Document',
+    title: 'Your Rights, Our Priority',
+    description: 'Committed to protecting your interests.',
+    ctaText: 'Learn More About Us',
+    ctaLink: './AboutUs',
+    fetchPriority: 'auto',
   },
 ];
 
@@ -62,7 +62,7 @@ const Hero = () => {
     afterChange: handleSlideChange,
     customPaging: (i) => (
       <div
-        className={`custom-dot ${i === currentSlide ? "active" : ""}`}
+        className={`custom-dot ${i === currentSlide ? 'active' : ''}`}
         aria-label={`Go to slide ${i + 1}`}
       />
     ),
@@ -102,7 +102,7 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
         viewport={{ once: true }}
         className="story flexCenter publication-grid"
       >

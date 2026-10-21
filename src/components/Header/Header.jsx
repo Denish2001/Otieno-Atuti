@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import "./header.css";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import './header.css';
+import { Link, useLocation } from 'react-router-dom';
 
 const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/PracticeAreas", label: "Practice Areas" },
-  { to: "/AboutUs", label: "About Us" },
-  { to: "/Publications", label: "Publications" },
-  { to: "/Team", label: "Our Team" },
-  { to: "/Contact", label: "Contact Us" },
+  { to: '/', label: 'Home' },
+  { to: '/PracticeAreas', label: 'Practice Areas' },
+  { to: '/AboutUs', label: 'About Us' },
+  { to: '/Publications', label: 'Publications' },
+  { to: '/Team', label: 'Our Team' },
+  { to: '/Contact', label: 'Contact Us' },
 ];
 
-const MOBILE_QUERY = "(max-width: 768px)";
+const MOBILE_QUERY = '(max-width: 768px)';
 
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -25,20 +25,20 @@ const Header = () => {
 
   /* Header background: transparent over the landing hero, solid everywhere else */
   useEffect(() => {
-    if (location.pathname !== "/") {
+    if (location.pathname !== '/') {
       setIsTransparent(false);
       return undefined;
     }
 
     const onScroll = () => {
-      const hero = document.getElementById("home");
+      const hero = document.getElementById('home');
       const threshold = hero ? hero.offsetHeight * 0.05 : 24;
       setIsTransparent(window.scrollY <= threshold);
     };
 
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, [location.pathname]);
 
   /* Close the menu whenever the route changes */
@@ -52,8 +52,8 @@ const Header = () => {
     const onChange = (e) => {
       if (!e.matches) closeMenu();
     };
-    mql.addEventListener("change", onChange);
-    return () => mql.removeEventListener("change", onChange);
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
   }, [closeMenu]);
 
   /* While open: lock page scroll, move focus in, handle Escape, trap Tab */
@@ -61,22 +61,22 @@ const Header = () => {
     if (!menuOpened) return undefined;
 
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     const frame = requestAnimationFrame(() => {
-      menuRef.current?.querySelector("a")?.focus();
+      menuRef.current?.querySelector('a')?.focus();
     });
 
     const onKeyDown = (e) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         closeMenu();
         toggleRef.current?.focus();
         return;
       }
 
-      if (e.key !== "Tab") return;
+      if (e.key !== 'Tab') return;
 
-      const links = Array.from(menuRef.current?.querySelectorAll("a") ?? []);
+      const links = Array.from(menuRef.current?.querySelectorAll('a') ?? []);
       const focusable = [...links, toggleRef.current].filter(Boolean);
       if (!focusable.length) return;
 
@@ -96,18 +96,18 @@ const Header = () => {
       }
     };
 
-    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener('keydown', onKeyDown);
 
     return () => {
       cancelAnimationFrame(frame);
       document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener('keydown', onKeyDown);
     };
   }, [menuOpened, closeMenu]);
 
   return (
     <nav
-      className={`h-wrapper ${isTransparent ? "transparent" : "solid"}`}
+      className={`h-wrapper ${isTransparent ? 'transparent' : 'solid'}`}
       id="nav"
       aria-label="Main"
     >
@@ -121,7 +121,7 @@ const Header = () => {
 
         {/* Page dimmer behind the mobile drawer */}
         <div
-          className={`h-backdrop ${menuOpened ? "open" : ""}`}
+          className={`h-backdrop ${menuOpened ? 'open' : ''}`}
           onClick={closeMenu}
           aria-hidden="true"
         />
@@ -130,17 +130,17 @@ const Header = () => {
         <ul
           id="primary-menu"
           ref={menuRef}
-          className={`h-menu ${menuOpened ? "open" : ""}`}
+          className={`h-menu ${menuOpened ? 'open' : ''}`}
         >
           {NAV_LINKS.map(({ to, label }, index) => {
             const isActive = location.pathname === to;
             return (
-              <li key={to} style={{ "--i": index }}>
+              <li key={to} style={{ '--i': index }}>
                 <Link
                   to={to}
                   data-label={label}
-                  className={isActive ? "active" : ""}
-                  aria-current={isActive ? "page" : undefined}
+                  className={isActive ? 'active' : ''}
+                  aria-current={isActive ? 'page' : undefined}
                   onClick={closeMenu}
                 >
                   {label}
@@ -154,9 +154,9 @@ const Header = () => {
         <button
           type="button"
           ref={toggleRef}
-          className={`h-toggle ${menuOpened ? "open" : ""}`}
+          className={`h-toggle ${menuOpened ? 'open' : ''}`}
           onClick={() => setMenuOpened((prev) => !prev)}
-          aria-label={menuOpened ? "Close menu" : "Open menu"}
+          aria-label={menuOpened ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpened}
           aria-controls="primary-menu"
         >

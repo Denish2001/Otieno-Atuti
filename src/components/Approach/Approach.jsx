@@ -1,4 +1,3 @@
-import React from 'react';
 import './Approach.css';
 
 const STEPS = [
@@ -6,7 +5,7 @@ const STEPS = [
     id: 1,
     title: 'Understand the Client’s Needs',
     description:
-      'We listen first. Every legal challenge is unique, and so is every client. Through thoughtful conversations and clear, jargon-free communication, we identify what truly matters—whether it\'s protecting their business, resolving a dispute, or securing their future.',
+      "We listen first. Every legal challenge is unique, and so is every client. Through thoughtful conversations and clear, jargon-free communication, we identify what truly matters—whether it's protecting their business, resolving a dispute, or securing their future.",
     howWeDoIt: [
       'We ask the right questions to clarify goals and concerns.',
       'We explain legal options in plain, human language.',
@@ -62,7 +61,9 @@ const STEPS = [
 const Approach = () => {
   return (
     <div className="approach-container">
-      <h1 className="primaryText">How We Serve Our Clients: A 5-Step Approach</h1>
+      <h1 className="primaryText">
+        How We Serve Our Clients: A 5-Step Approach
+      </h1>
 
       {STEPS.map((step) => (
         <div key={step.id} className="step-card">

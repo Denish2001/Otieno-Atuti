@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import "./Team.css";
-import HeroSection from "../HeroSection/HeroSection";
-import data from "../../utils/team.json";
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import './Team.css';
+import HeroSection from '../HeroSection/HeroSection';
+import data from '../../utils/team.json';
 
-const HERO_TEXT = "Our People.";
-const HERO_IMAGE = "./hero1.webp";
+const HERO_TEXT = 'Our People.';
+const HERO_IMAGE = './hero1.webp';
 const EAGER_IMAGE_COUNT = 4; // first row loads immediately, the rest lazily
 
 const CloseIcon = () => (
@@ -34,7 +34,7 @@ const ChevronIcon = ({ direction }) => (
     focusable="false"
   >
     <path
-      d={direction === "left" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}
+      d={direction === 'left' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'}
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
@@ -58,9 +58,9 @@ const Team = () => {
   const step = useCallback(
     (delta) =>
       setActiveIndex((current) =>
-        current === null ? current : (current + delta + total) % total,
+        current === null ? current : (current + delta + total) % total
       ),
-    [total],
+    [total]
   );
 
   const closeDialog = () => dialogRef.current?.close();
@@ -76,7 +76,7 @@ const Team = () => {
   useEffect(() => {
     if (!isOpen) return undefined;
     const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = previous;
     };
@@ -93,10 +93,10 @@ const Team = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "ArrowLeft") {
+    if (e.key === 'ArrowLeft') {
       e.preventDefault();
       step(-1);
-    } else if (e.key === "ArrowRight") {
+    } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       step(1);
     }
@@ -125,11 +125,11 @@ const Team = () => {
                     alt=""
                     width="400"
                     height="500"
-                    loading={index < EAGER_IMAGE_COUNT ? "eager" : "lazy"}
+                    loading={index < EAGER_IMAGE_COUNT ? 'eager' : 'lazy'}
                     decoding="async"
                     style={
                       person.imagePosition
-                        ? { "--pos": person.imagePosition }
+                        ? { '--pos': person.imagePosition }
                         : undefined
                     }
                   />
@@ -170,7 +170,7 @@ const Team = () => {
                   decoding="async"
                   style={
                     member.imagePosition
-                      ? { "--pos": member.imagePosition }
+                      ? { '--pos': member.imagePosition }
                       : undefined
                   }
                 />

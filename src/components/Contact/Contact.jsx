@@ -1,57 +1,57 @@
-import React, { useState, useRef, useEffect } from "react";
-import "./Contact.css";
-import { MdCall, MdEmail } from "react-icons/md";
-import { BsFillChatDotsFill } from "react-icons/bs";
-import { HiChatBubbleBottomCenter } from "react-icons/hi2";
-import HeroSection from "../HeroSection/HeroSection";
-import emailjs from "emailjs-com";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useRef, useEffect } from 'react';
+import './Contact.css';
+import { MdCall, MdEmail } from 'react-icons/md';
+import { BsFillChatDotsFill } from 'react-icons/bs';
+import { HiChatBubbleBottomCenter } from 'react-icons/hi2';
+import HeroSection from '../HeroSection/HeroSection';
+import emailjs from '@emailjs/browser';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const EMAILJS = {
-  publicKey: "RiNS7lwjgMAZ2jo46",
-  serviceId: "service_1xly9mu",
-  contactTemplate: "template_huwwvvf",
-  newsletterTemplate: "template_f5uouyp",
+  publicKey: 'RiNS7lwjgMAZ2jo46',
+  serviceId: 'service_1xly9mu',
+  contactTemplate: 'template_huwwvvf',
+  newsletterTemplate: 'template_f5uouyp',
 };
 
 const CONTACT_MODES = [
   {
-    id: "call",
+    id: 'call',
     icon: MdCall,
-    label: "Call",
-    value: "+254 799 816 064",
-    href: "tel:+254799816064",
-    cta: "Call Now",
+    label: 'Call',
+    value: '+254 799 816 064',
+    href: 'tel:+254799816064',
+    cta: 'Call Now',
   },
   {
-    id: "whatsapp",
+    id: 'whatsapp',
     icon: BsFillChatDotsFill,
-    label: "WhatsApp",
-    value: "+254 705 369 048",
-    href: "https://wa.me/254705369048",
-    cta: "Chat Now",
+    label: 'WhatsApp',
+    value: '+254 705 369 048',
+    href: 'https://wa.me/254705369048',
+    cta: 'Chat Now',
     external: true,
   },
   {
-    id: "email",
+    id: 'email',
     icon: MdEmail,
-    label: "Email",
-    value: "otienoatuti@gmail.com",
-    href: "mailto:otienoatuti@gmail.com",
-    cta: "Send an Email",
+    label: 'Email',
+    value: 'otienoatuti@gmail.com',
+    href: 'mailto:otienoatuti@gmail.com',
+    cta: 'Send an Email',
   },
   {
-    id: "sms",
+    id: 'sms',
     icon: HiChatBubbleBottomCenter,
-    label: "SMS",
-    value: "+254 705 369 048",
-    href: "sms:+254705369048",
-    cta: "Send a Text",
+    label: 'SMS',
+    value: '+254 705 369 048',
+    href: 'sms:+254705369048',
+    cta: 'Send a Text',
   },
 ];
 
 const Contact = () => {
-  const [alert, setAlert] = useState({ show: false, message: "", type: "" });
+  const [alert, setAlert] = useState({ show: false, message: '', type: '' });
   const [sendingContact, setSendingContact] = useState(false);
   const [sendingNewsletter, setSendingNewsletter] = useState(false);
   const alertTimer = useRef(null);
@@ -67,7 +67,7 @@ const Contact = () => {
     clearTimeout(alertTimer.current);
     alertTimer.current = setTimeout(
       () => setAlert((prev) => ({ ...prev, show: false })),
-      5000,
+      5000
     );
   };
 
@@ -77,12 +77,12 @@ const Contact = () => {
         EMAILJS.serviceId,
         templateId,
         form,
-        EMAILJS.publicKey,
+        EMAILJS.publicKey
       );
-      showAlert(successMsg, "success");
+      showAlert(successMsg, 'success');
       form.reset();
     } catch {
-      showAlert("Something went wrong. Please try again.", "error");
+      showAlert('Something went wrong. Please try again.', 'error');
     }
   };
 
@@ -92,7 +92,7 @@ const Contact = () => {
     await sendForm(
       EMAILJS.contactTemplate,
       e.target,
-      "Message sent successfully!",
+      'Message sent successfully!'
     );
     setSendingContact(false);
   };
@@ -103,7 +103,7 @@ const Contact = () => {
     await sendForm(
       EMAILJS.newsletterTemplate,
       e.target,
-      "Subscribed successfully!",
+      'Subscribed successfully!'
     );
     setSendingNewsletter(false);
   };
@@ -137,7 +137,7 @@ const Contact = () => {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
         viewport={{ once: true }}
         className="paddings innerWidth c-inner"
       >
@@ -200,7 +200,7 @@ const Contact = () => {
                 />
               </div>
               <button type="submit" className="btn" disabled={sendingContact}>
-                {sendingContact ? "Sending…" : "Submit"}
+                {sendingContact ? 'Sending…' : 'Submit'}
               </button>
             </form>
           </div>
@@ -229,7 +229,7 @@ const Contact = () => {
                   className="btn"
                   disabled={sendingNewsletter}
                 >
-                  {sendingNewsletter ? "Subscribing…" : "Subscribe"}
+                  {sendingNewsletter ? 'Subscribing…' : 'Subscribe'}
                 </button>
               </form>
             </div>
@@ -283,14 +283,14 @@ const Contact = () => {
                     className="btn btn--ghost"
                     href={href}
                     {...(external && {
-                      target: "_blank",
-                      rel: "noopener noreferrer",
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
                     })}
                   >
                     {cta}
                   </a>
                 </div>
-              ),
+              )
             )}
           </div>
         </section>

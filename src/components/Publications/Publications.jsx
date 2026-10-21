@@ -1,12 +1,12 @@
-import React, { memo, useCallback, useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import "./Publications.css";
-import HeroSection from "../HeroSection/HeroSection";
-import ArticleModal from "./ArticleModal";
-import publications from "../../utils/Publications.json";
+import React, { memo, useCallback, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import './Publications.css';
+import HeroSection from '../HeroSection/HeroSection';
+import ArticleModal from './ArticleModal';
+import publications from '../../utils/Publications.json';
 
-const HERO_TEXT = "Literary Works.";
-const HERO_IMAGE = "./hero3.webp";
+const HERO_TEXT = 'Literary Works.';
+const HERO_IMAGE = './hero3.webp';
 
 const PublicationCard = memo(function PublicationCard({
   publication,
@@ -34,7 +34,7 @@ const Publications = () => {
 
   const openArticle = useCallback(
     (publication) => setSelected(publication),
-    [],
+    []
   );
   const closeArticle = useCallback(() => setSelected(null), []);
 

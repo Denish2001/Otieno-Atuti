@@ -1,42 +1,42 @@
 [
-    {
-        "id": "1",
-        "name": "Corporate Law",
-        "description": "Running a business comes with legal challenges—let us handle them for you. Our corporate law experts provide clear, actionable advice on contracts, compliance, and governance, ensuring your business runs smoothly and legally."
-    },
-    {
-        "id": "2",
-        "name": "Family Law",
-        "description": "Family matters are personal, and so is our approach. Whether you're facing divorce, custody battles, or alimony concerns, we provide compassionate legal guidance to protect your rights and secure the best outcome for you and your loved ones."
-    },
-    {
-        "id": "3",
-        "name": "Dispute Resolution",
-        "description": "Avoid lengthy court battles with our strategic dispute resolution services. Through mediation, arbitration, and negotiation, we help you resolve conflicts quickly and fairly—so you can move forward with confidence."
-    },
-    {
-        "id": "4",
-        "name": "Litigation",
-        "description": "When legal disputes escalate, you need a strong advocate. Our litigation team fights for your interests, whether in business conflicts or civil cases, ensuring you receive expert representation every step of the way."
-    },
-    {
-        "id": "5",
-        "name": "Property Law",
-        "description": "Real estate transactions and disputes can be complex, but we make them simple. From commercial leases to property development, we provide expert legal guidance to help you navigate regulations and protect your investments."
-    },
-    {
-        "id": "6",
-        "name": "Environmental & Marine Law",
-        "description": "Maritime and environmental regulations are intricate, but compliance doesn’t have to be overwhelming. We provide specialized legal support for marine businesses, ensuring regulatory adherence, contract security, and dispute resolution with confidence."
-    },
-    {
-        "id": "7",
-        "name": "Intellectual Property Protection",
-        "description": "Your ideas are valuable—let’s keep them protected. Whether it’s patents, trademarks, or copyrights, we help safeguard your innovations and creative assets, ensuring your competitive edge stays intact."
-    },
-    {
-        "id": "8",
-        "name": "Accidents & Personal Injuries",
-        "description": "An accident can change your life, but you don’t have to face it alone. We fight for your right to fair compensation after car accidents, workplace injuries, and more—so you can focus on recovery while we handle the legal process."
-    }
+  {
+    "id": "1",
+    "name": "Corporate Law",
+    "description": "Running a business comes with legal challenges—let us handle them for you. Our corporate law experts provide clear, actionable advice on contracts, compliance, and governance, ensuring your business runs smoothly and legally."
+  },
+  {
+    "id": "2",
+    "name": "Family Law",
+    "description": "Family matters are personal, and so is our approach. Whether you're facing divorce, custody battles, or alimony concerns, we provide compassionate legal guidance to protect your rights and secure the best outcome for you and your loved ones."
+  },
+  {
+    "id": "3",
+    "name": "Dispute Resolution",
+    "description": "Avoid lengthy court battles with our strategic dispute resolution services. Through mediation, arbitration, and negotiation, we help you resolve conflicts quickly and fairly—so you can move forward with confidence."
+  },
+  {
+    "id": "4",
+    "name": "Litigation",
+    "description": "When legal disputes escalate, you need a strong advocate. Our litigation team fights for your interests, whether in business conflicts or civil cases, ensuring you receive expert representation every step of the way."
+  },
+  {
+    "id": "5",
+    "name": "Property Law",
+    "description": "Real estate transactions and disputes can be complex, but we make them simple. From commercial leases to property development, we provide expert legal guidance to help you navigate regulations and protect your investments."
+  },
+  {
+    "id": "6",
+    "name": "Environmental & Marine Law",
+    "description": "Maritime and environmental regulations are intricate, but compliance doesn’t have to be overwhelming. We provide specialized legal support for marine businesses, ensuring regulatory adherence, contract security, and dispute resolution with confidence."
+  },
+  {
+    "id": "7",
+    "name": "Intellectual Property Protection",
+    "description": "Your ideas are valuable—let’s keep them protected. Whether it’s patents, trademarks, or copyrights, we help safeguard your innovations and creative assets, ensuring your competitive edge stays intact."
+  },
+  {
+    "id": "8",
+    "name": "Accidents & Personal Injuries",
+    "description": "An accident can change your life, but you don’t have to face it alone. We fight for your right to fair compensation after car accidents, workplace injuries, and more—so you can focus on recovery while we handle the legal process."
+  }
 ]

@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useId, useRef } from "react";
-import { createPortal } from "react-dom";
-import { motion, useReducedMotion } from "framer-motion";
-import "./ArticleModal.css";
+import React, { useCallback, useEffect, useId, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, useReducedMotion } from 'framer-motion';
+import './ArticleModal.css';
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
@@ -9,7 +9,7 @@ const FOCUSABLE =
 /* ---------- Small presentational pieces ---------- */
 
 const List = ({ items = [], ordered = false }) => {
-  const Tag = ordered ? "ol" : "ul";
+  const Tag = ordered ? 'ol' : 'ul';
   return (
     <Tag>
       {items.map((item, index) => (
@@ -21,13 +21,13 @@ const List = ({ items = [], ordered = false }) => {
 
 const SECTIONS = [
   {
-    key: "requirements",
-    title: "Requirements",
+    key: 'requirements',
+    title: 'Requirements',
     render: (items) => <List items={items} />,
   },
   {
-    key: "foreign_requirements",
-    title: "Foreign Requirements",
+    key: 'foreign_requirements',
+    title: 'Foreign Requirements',
     render: ({ description, additional_documents }) => (
       <>
         <p>{description}</p>
@@ -36,8 +36,8 @@ const SECTIONS = [
     ),
   },
   {
-    key: "court_findings",
-    title: "Court Findings",
+    key: 'court_findings',
+    title: 'Court Findings',
     render: (findings) =>
       findings.map(({ court, ruling }, index) => (
         <div key={index} className="court-finding">
@@ -47,18 +47,18 @@ const SECTIONS = [
       )),
   },
   {
-    key: "key_takeaways",
-    title: "Key Takeaways",
+    key: 'key_takeaways',
+    title: 'Key Takeaways',
     render: (items) => <List items={items} />,
   },
   {
-    key: "steps",
-    title: "Steps",
+    key: 'steps',
+    title: 'Steps',
     render: (items) => <List items={items} ordered />,
   },
   {
-    key: "key_requirements",
-    title: "Key Requirements",
+    key: 'key_requirements',
+    title: 'Key Requirements',
     render: (items) => <List items={items} />,
   },
 ];
@@ -68,7 +68,7 @@ const SECTIONS = [
 const useScrollLock = () => {
   useEffect(() => {
     const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = previous;
     };
@@ -81,7 +81,7 @@ const useFocusTrap = (dialogRef, initialFocusRef) => {
     initialFocusRef.current?.focus();
 
     const handleTab = (event) => {
-      if (event.key !== "Tab" || !dialogRef.current) return;
+      if (event.key !== 'Tab' || !dialogRef.current) return;
       const nodes = dialogRef.current.querySelectorAll(FOCUSABLE);
       if (nodes.length === 0) return;
       const first = nodes[0];
@@ -96,9 +96,9 @@ const useFocusTrap = (dialogRef, initialFocusRef) => {
       }
     };
 
-    document.addEventListener("keydown", handleTab);
+    document.addEventListener('keydown', handleTab);
     return () => {
-      document.removeEventListener("keydown", handleTab);
+      document.removeEventListener('keydown', handleTab);
       trigger?.focus?.();
     };
   }, [dialogRef, initialFocusRef]);
@@ -118,17 +118,17 @@ const ArticleModal = ({ publication, onClose }) => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === 'Escape') onClose();
     };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
   const handleBackdropClick = useCallback(
     (event) => {
       if (event.target === event.currentTarget) onClose();
     },
-    [onClose],
+    [onClose]
   );
 
   const fade = reduceMotion
@@ -146,7 +146,7 @@ const ArticleModal = ({ publication, onClose }) => {
         initial: { opacity: 0, y: 24, scale: 0.98 },
         animate: { opacity: 1, y: 0, scale: 1 },
         exit: { opacity: 0, y: 24, scale: 0.98 },
-        transition: { duration: 0.25, ease: "easeOut" },
+        transition: { duration: 0.25, ease: 'easeOut' },
       };
 
   return createPortal(
@@ -188,7 +188,7 @@ const ArticleModal = ({ publication, onClose }) => {
                   <h3>{sectionTitle}</h3>
                   {render(article[key])}
                 </section>
-              ),
+              )
           )}
 
           {disclaimer && <p className="disclaimer">{disclaimer}</p>}
@@ -206,7 +206,7 @@ const ArticleModal = ({ publication, onClose }) => {
         </footer>
       </motion.div>
     </motion.div>,
-    document.body,
+    document.body
   );
 };
 

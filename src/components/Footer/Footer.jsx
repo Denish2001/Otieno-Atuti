@@ -1,32 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Footer.css";
+import { Link } from 'react-router-dom';
+import './Footer.css';
 
 const SOCIALS = [
-  { href: "https://x.com/AtutiOtieno", label: "X (Twitter)", icon: "x.svg" },
+  { href: 'https://x.com/AtutiOtieno', label: 'X (Twitter)', icon: 'x.svg' },
   {
-    href: "https://www.instagram.com/_denish.awajo/",
-    label: "Instagram",
-    icon: "instagram.svg",
+    href: 'https://www.instagram.com/_denish.awajo/',
+    label: 'Instagram',
+    icon: 'instagram.svg',
   },
   {
-    href: "https://www.linkedin.com/company/otieno-atuti-company-advocates/",
-    label: "LinkedIn",
-    icon: "ln.svg",
+    href: 'https://www.linkedin.com/company/otieno-atuti-company-advocates/',
+    label: 'LinkedIn',
+    icon: 'ln.svg',
   },
   {
-    href: "https://www.facebook.com/profile.php?id=61563173245735&sk=about",
-    label: "Facebook",
-    icon: "fb.svg",
+    href: 'https://www.facebook.com/profile.php?id=61563173245735&sk=about',
+    label: 'Facebook',
+    icon: 'fb.svg',
   },
 ];
 
 const FOOTER_LINKS = [
-  { to: "/PracticeAreas", label: "Practice Areas" },
-  { to: "/AboutUs", label: "About Us" },
-  { to: "/Team", label: "Our Team" },
-  { to: "/Publications", label: "Publications" },
-  { to: "/Contact", label: "Contact" },
+  { to: '/PracticeAreas', label: 'Practice Areas' },
+  { to: '/AboutUs', label: 'About Us' },
+  { to: '/Team', label: 'Our Team' },
+  { to: '/Publications', label: 'Publications' },
+  { to: '/Contact', label: 'Contact' },
 ];
 
 const Footer = () => {

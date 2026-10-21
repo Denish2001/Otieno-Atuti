@@ -90,7 +90,7 @@
 
 /* Small accent bar that lengthens on hover / focus */
 .team-card__body::before {
-  content: "";
+  content: '';
   display: block;
   width: 32px;
   height: 3px;
